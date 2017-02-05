@@ -1,16 +1,18 @@
 Summary:	A GNOME cookbook
 Summary(pl.UTF-8):	Książka kucharska GNOME
 Name:		recipes
-Version:	0.6.0
+Version:	0.8.0
 Release:	1
-License:	GPL v3
+License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/recipes/0.6/%{name}-%{version}.tar.xz
-# Source0-md5:	8a582e19e0d718a9324849402de75994
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/recipes/0.8/%{name}-%{version}.tar.xz
+# Source0-md5:	6fe8a660ff0c490dfb5a26c8ff342d10
 URL:		https://wiki.gnome.org/Apps/Recipes
 BuildRequires:	appstream-glib
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11
+# C11 (-std=gnu11)
+BuildRequires:	gcc >= 6:4.7
 BuildRequires:	gettext-tools >= 0.19.7
 BuildRequires:	glib2-devel >= 1:2.42.0
 BuildRequires:	gnome-autoar-devel
@@ -20,6 +22,7 @@ BuildRequires:	gtk+3-devel >= 3.20.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pkgconfig >= 1:0.22
+BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun): gtk-update-icon-cache
 Requires:	hicolor-icon-theme
@@ -44,7 +47,6 @@ okazje.
 Program zawiera kolekcję przepisów zebranych przez współtwórców GNOME
 z całego świata. Umożliwia także dodawanie własnych przepisów
 i udostępnianie ich znajomym.
-
 
 %prep
 %setup -q
@@ -89,6 +91,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome-shell/search-providers/org.gnome.Recipes-search-provider.ini
 %{_datadir}/recipes
 %{_desktopdir}/org.gnome.Recipes.desktop
-%{_iconsdir}/hicolor/*/*/*.png
-%{_iconsdir}/hicolor/*/*/*.svg
-
+%{_iconsdir}/hicolor/*x*/apps/org.gnome.Recipes*.png
+%{_iconsdir}/hicolor/symbolic/apps/org.gnome.Recipes-symbolic.svg
