@@ -1,12 +1,12 @@
 Summary:	A GNOME cookbook
 Summary(pl.UTF-8):	Książka kucharska GNOME
 Name:		recipes
-Version:	0.10.0
+Version:	0.12.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/recipes/0.10/%{name}-%{version}.tar.xz
-# Source0-md5:	4dfc5fe85d4a3d8d8df560878b2d0284
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/recipes/0.12/%{name}-%{version}.tar.xz
+# Source0-md5:	98631dc477520f2d402e4da183395cd0
 URL:		https://wiki.gnome.org/Apps/Recipes
 BuildRequires:	appstream-glib
 BuildRequires:	autoconf >= 2.69
@@ -28,6 +28,7 @@ Requires(post,postun): gtk-update-icon-cache
 Requires:	hicolor-icon-theme
 Requires:	glib2 >= 1:2.42.0
 Requires:	gtk+3 >= 3.20.0
+Requires:	shared-mime-info
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -58,7 +59,8 @@ i udostępnianie ich znajomym.
 %{__autoconf}
 %{__automake}
 %configure \
-	--disable-silent-rules
+	--disable-silent-rules \
+	--disable-static
 %{__make}
 
 %install
@@ -67,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/recipes/*.{a,la}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/recipes/*.la
 
 %find_lang %{name}
 
@@ -76,9 +78,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %update_icon_cache hicolor
+%update_mime_database
 
 %postun
 %update_icon_cache hicolor
+%update_mime_database
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -89,6 +93,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/appdata/org.gnome.Recipes.appdata.xml
 %{_datadir}/dbus-1/services/org.gnome.Recipes.service
 %{_datadir}/gnome-shell/search-providers/org.gnome.Recipes-search-provider.ini
+%{_datadir}/mime/packages/org.gnome.Recipes-mime.xml
 %{_datadir}/recipes
 %{_desktopdir}/org.gnome.Recipes.desktop
 %{_iconsdir}/hicolor/*x*/apps/org.gnome.Recipes*.png
