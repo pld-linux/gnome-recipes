@@ -20,6 +20,7 @@ BuildRequires:	appstream-glib
 # C11 (-std=gnu11)
 BuildRequires:	gcc >= 6:4.7
 BuildRequires:	gettext-tools >= 0.19.7
+BuildRequires:	git-core
 BuildRequires:	glib2-devel >= 1:2.42.0
 BuildRequires:	gnome-autoar-devel
 BuildRequires:	gobject-introspection-devel >= 1.42.0
