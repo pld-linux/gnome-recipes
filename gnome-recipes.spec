@@ -1,20 +1,12 @@
 Summary:	A GNOME cookbook
 Summary(pl.UTF-8):	Książka kucharska GNOME
 Name:		gnome-recipes
-Version:	1.2.0
+Version:	1.4.6
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-recipes/1.2/%{name}-%{version}.tar.xz
-# Source0-md5:	a91a4213f6a99e3ef120be4b5770ad85
-#
-# Taken from GIT repository:
-# $ git clone --recursive git://git.gnome.org/recipes
-# $ cd recipes
-# $ git checkout tags/1.2.0
-# $ tar -cJf gnome-recipes-libgd-1.2.0.tar.xz subprojects/
-Source1:	%{name}-libgd-%{version}.tar.xz
-# Source1-md5:	91a14eca84ef2f09575237f21e7e6959
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-recipes/1.4/%{name}-%{version}.tar.xz
+# Source0-md5:	bbb24d65a8b553960e6c46e816d0edde
 URL:		https://wiki.gnome.org/Apps/Recipes
 BuildRequires:	appstream-glib
 # C11 (-std=gnu11)
@@ -24,11 +16,11 @@ BuildRequires:	git-core
 BuildRequires:	glib2-devel >= 1:2.42.0
 BuildRequires:	gnome-autoar-devel
 BuildRequires:	gobject-introspection-devel >= 1.42.0
-BuildRequires:	gspell-devel
+BuildRequires:	gspell-devel >= 1
 BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libcanberra-devel
-BuildRequires:	libsoup-devel
+BuildRequires:	libsoup-devel >= 2.4
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	meson >= 0.36.0
 BuildRequires:	pkgconfig >= 1:0.22
@@ -41,7 +33,7 @@ Requires:	gtk+3 >= 3.22.0
 Requires:	hicolor-icon-theme
 Requires:	shared-mime-info
 Provides:	recipes = %{version}
-Obsoletes:	recipes < %{version}
+Obsoletes:	recipes < 0.14
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -63,18 +55,26 @@ z całego świata. Umożliwia także dodawanie własnych przepisów
 i udostępnianie ich znajomym.
 
 %prep
-%setup -q -a 1
+%setup -q
 
 %build
-meson --prefix=%{_prefix} build
-ninja -C build
+CC="%{__cc}" \
+CFLAGS="%{rpmcflags} %{rpmcppflags}" \
+LDFLAGS="%{rpmldflags}" \
+meson build \
+	--buildtype=plain \
+	--prefix=%{_prefix}
+
+ninja -C build -v
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 DESTDIR=$RPM_BUILD_ROOT \
-ninja -C build install
+ninja -C build -v install
 
+# gnome-recipes, gnome-recipes-data gettext domains
+# org.gnome.Recipes help
 %find_lang %{name} --all-name --with-gnome
 
 %clean
@@ -97,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/appdata/org.gnome.Recipes.appdata.xml
 %{_datadir}/dbus-1/services/org.gnome.Recipes.service
 %{_datadir}/glib-2.0/schemas/org.gnome.Recipes.gschema.xml
+%{_datadir}/gnome-shell/search-providers/org.gnome.Recipes-search-provider.ini
 %{_datadir}/mime/packages/org.gnome.Recipes-mime.xml
 %{_datadir}/gnome-recipes
 %{_desktopdir}/org.gnome.Recipes.desktop
