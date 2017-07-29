@@ -1,12 +1,12 @@
 Summary:	A GNOME cookbook
 Summary(pl.UTF-8):	Książka kucharska GNOME
 Name:		gnome-recipes
-Version:	1.4.6
+Version:	1.6.2
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-recipes/1.4/%{name}-%{version}.tar.xz
-# Source0-md5:	bbb24d65a8b553960e6c46e816d0edde
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-recipes/1.6/%{name}-%{version}.tar.xz
+# Source0-md5:	c2f9aba5d795d0e252d21eb6f9475755
 URL:		https://wiki.gnome.org/Apps/Recipes
 BuildRequires:	appstream-glib
 # C11 (-std=gnu11)
