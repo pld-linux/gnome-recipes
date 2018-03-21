@@ -1,12 +1,12 @@
 Summary:	A GNOME cookbook
 Summary(pl.UTF-8):	Książka kucharska GNOME
 Name:		gnome-recipes
-Version:	1.6.2
+Version:	2.0.2
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-recipes/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	c2f9aba5d795d0e252d21eb6f9475755
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-recipes/2.0/%{name}-%{version}.tar.xz
+# Source0-md5:	e5b6463e9e6c6ac96c61635dfd4e95c4
 URL:		https://wiki.gnome.org/Apps/Recipes
 BuildRequires:	appstream-glib
 # C11 (-std=gnu11)
@@ -15,6 +15,7 @@ BuildRequires:	gettext-tools >= 0.19.7
 BuildRequires:	git-core
 BuildRequires:	glib2-devel >= 1:2.42.0
 BuildRequires:	gnome-autoar-devel
+BuildRequires:	gnome-online-accounts-devel
 BuildRequires:	gobject-introspection-devel >= 1.42.0
 BuildRequires:	gspell-devel >= 1
 BuildRequires:	gtk+3-devel >= 3.22.0
@@ -24,6 +25,7 @@ BuildRequires:	libsoup-devel >= 2.4
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	meson >= 0.36.0
 BuildRequires:	pkgconfig >= 1:0.22
+BuildRequires:	rest-devel
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	gtk-update-icon-cache
