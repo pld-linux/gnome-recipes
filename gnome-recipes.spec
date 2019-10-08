@@ -24,8 +24,10 @@ BuildRequires:	libcanberra-devel
 BuildRequires:	libsoup-devel >= 2.4
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	meson >= 0.36.0
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.22
 BuildRequires:	rest-devel
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	gtk-update-icon-cache
@@ -60,20 +62,14 @@ i udostępnianie ich znajomym.
 %setup -q
 
 %build
-CC="%{__cc}" \
-CFLAGS="%{rpmcflags} %{rpmcppflags}" \
-LDFLAGS="%{rpmldflags}" \
-meson build \
-	--buildtype=plain \
-	--prefix=%{_prefix}
+%meson build
 
-ninja -C build -v
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-DESTDIR=$RPM_BUILD_ROOT \
-ninja -C build -v install
+%ninja_install -C build
 
 # gnome-recipes, gnome-recipes-data gettext domains
 # org.gnome.Recipes help
