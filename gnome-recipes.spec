@@ -22,11 +22,10 @@ BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libcanberra-devel
 BuildRequires:	libsoup-devel >= 2.4
-BuildRequires:	libtool >= 2:2.2
 BuildRequires:	meson >= 0.36.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.22
-BuildRequires:	rest-devel
+BuildRequires:	rest-devel >= 0.7
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
