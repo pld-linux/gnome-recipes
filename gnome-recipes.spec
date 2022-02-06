@@ -1,12 +1,12 @@
 Summary:	A GNOME cookbook
 Summary(pl.UTF-8):	Książka kucharska GNOME
 Name:		gnome-recipes
-Version:	2.0.2
+Version:	2.0.4
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-recipes/2.0/%{name}-%{version}.tar.xz
-# Source0-md5:	e5b6463e9e6c6ac96c61635dfd4e95c4
+Source0:	https://download.gnome.org/sources/gnome-recipes/2.0/%{name}-%{version}.tar.xz
+# Source0-md5:	2e854234e88c6320cb167db9bd8270e0
 URL:		https://wiki.gnome.org/Apps/Recipes
 BuildRequires:	appstream-glib
 # C11 (-std=gnu11)
@@ -22,7 +22,7 @@ BuildRequires:	gtk+3-devel >= 3.22.0
 BuildRequires:	json-glib-devel
 BuildRequires:	libcanberra-devel
 BuildRequires:	libsoup-devel >= 2.4
-BuildRequires:	meson >= 0.36.0
+BuildRequires:	meson >= 0.43.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig >= 1:0.22
 BuildRequires:	rest-devel >= 0.7
@@ -91,10 +91,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.md CONTRIBUTING.md
 %attr(755,root,root) %{_bindir}/gnome-recipes
-%{_datadir}/appdata/org.gnome.Recipes.appdata.xml
 %{_datadir}/dbus-1/services/org.gnome.Recipes.service
 %{_datadir}/glib-2.0/schemas/org.gnome.Recipes.gschema.xml
 %{_datadir}/gnome-shell/search-providers/org.gnome.Recipes-search-provider.ini
+%{_datadir}/metainfo/org.gnome.Recipes.appdata.xml
 %{_datadir}/mime/packages/org.gnome.Recipes-mime.xml
 %{_datadir}/gnome-recipes
 %{_desktopdir}/org.gnome.Recipes.desktop
