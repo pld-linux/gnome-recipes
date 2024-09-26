@@ -2,11 +2,12 @@ Summary:	A GNOME cookbook
 Summary(pl.UTF-8):	Książka kucharska GNOME
 Name:		gnome-recipes
 Version:	2.0.4
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		X11/Applications
 Source0:	https://download.gnome.org/sources/gnome-recipes/2.0/%{name}-%{version}.tar.xz
 # Source0-md5:	2e854234e88c6320cb167db9bd8270e0
+Patch0:		%{name}-warnings.patch
 URL:		https://wiki.gnome.org/Apps/Recipes
 BuildRequires:	appstream-glib
 # C11 (-std=gnu11)
@@ -59,6 +60,7 @@ i udostępnianie ich znajomym.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %meson build
